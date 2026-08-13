@@ -98,3 +98,25 @@ def toggle_assign_to_car(request, pk):
         car.drivers.add(request.user)
     return HttpResponseRedirect(reverse_lazy(
         "taxi:car-detail", args=[pk]))
+
+
+class ManufacturerListView(LoginRequiredMixin, generic.ListView):
+    model = Manufacturer
+    paginate_by = 5
+
+
+class ManufacturerCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Manufacturer
+    fields = "__all__"
+    success_url = reverse_lazy("taxi:manufacturer-list")
+
+
+class ManufacturerUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Manufacturer
+    fields = "__all__"
+    success_url = reverse_lazy("taxi:manufacturer-list")
+
+
+class ManufacturerDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Manufacturer
+    success_url = reverse_lazy("taxi:manufacturer-list")
