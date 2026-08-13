@@ -58,7 +58,8 @@ class DriverLicenseUpdateView(LoginRequiredMixin, generic.UpdateView):
     template_name = "taxi/driver_license_update.html"
 
     def get_success_url(self):
-        return reverse_lazy("taxi:driver-detail", kwargs={"pk": self.object.pk})
+        return reverse_lazy("taxi:driver-detail",
+                            kwargs={"pk": self.object.pk})
 
 
 class CarListView(LoginRequiredMixin, generic.ListView):
